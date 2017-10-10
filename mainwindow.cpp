@@ -112,7 +112,7 @@ void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox::about(this, "About", "<p align='center'>DuinoBoX v1.0"
                                       "<br>An Xbox EEPROM Reader"
-                                      "<br>(<a href='http://github.com/'>GitHub Page</a>)<br>"
+                                      "<br>(<a href='https://github.com/ExtraordinaryBen/DuinoBoX'>GitHub Page</a>)<br>"
                                       "Copyright (C) 2017, Ben DeCamp</p>");
 }
 
