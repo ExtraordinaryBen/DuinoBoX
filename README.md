@@ -11,7 +11,6 @@ The Arduino sketech extracts the data from the Xbox's 256 byte EEPROM and either
 
 ### Preparing the Arduino board
 Open the included Arduino sketch `duinobox-sketch.ino` with ArduinoIDE, then 
-upload it onto the Arduino board.
 
 #### Using Remote EEPROM Extraction
 When the Arduino is not connected to a computer, it will try to detect and read the Xbox's EEPROM. If successful the Arduino will store the EEPROM data on the Arduino's internal EEPROM storage.
