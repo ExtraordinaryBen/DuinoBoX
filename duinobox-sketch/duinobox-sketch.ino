@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <EEPROM.h>    
  
-#define EEPROM_ADDRESS 0x50    //Address of Xbox EEPROM is 0x54
+#define EEPROM_ADDRESS 0x54    //Address of Xbox EEPROM is 0x54
 #define XBOX_EEPROM_SIZE 256
 
 unsigned int address = 0;
