@@ -34,7 +34,7 @@ DuinoBoX EEPROM Reader is coded natively in C++ and Qt5.9. Simply open the proje
 Ben DeCamp (ExtraordinaryBen) -- Inital work
 
 ## License
-
+DuinoBoX is released under the GPLv3 License. See the 'LICENSE' file for details.
 
 ## Acknowledgements
 
