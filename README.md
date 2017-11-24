@@ -21,7 +21,7 @@ If a computer and the Xbox's EEPROM are connected, the Arduino will read the EEP
 
 
 ### Getting the DuinoBoX EEPROM Reader Program
-Binary releases can be obtained here.
+Binary releases can be found under the [releases page.](https://github.com/ExtraordinaryBen/DuinoBoX/releases)
 
 
 ## Building From Source
