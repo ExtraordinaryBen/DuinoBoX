@@ -59,7 +59,7 @@ void MainWindow::on_readButton_released()
 
         //Load EEPROM data into fields
         ui->serialLineEdit->setText(QString(results->mid(0x34, 12)));
-
+        XboxVersion(ui->serialLineEdit->text());
         ui->onlineKeyLineEdit->setText(QString(results->mid(0x48, 16).toHex()).toUpper());
 
         ui->dvdZoneLineEdit->setText(QString(results->mid(0xBC, 4).toHex()));
@@ -110,9 +110,9 @@ void MainWindow::on_actionSave_EEPROM_bin_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "About", "<p align='center'>DuinoBoX v1.0"
+    QMessageBox::about(this, "About", "<p align='center'>DuinoBoX " VERSION
                                       "<br>An Xbox EEPROM Reader"
-                                      "<br>(<a href='https://github.com/ExtraordinaryBen/DuinoBoX'>GitHub Page</a>)<br>"
+                                      "<br>(<a href=" GITHUB_URL ">GitHub Page</a>)<br>"
                                       "Copyright (C) 2017, Ben DeCamp</p>");
 }
 
@@ -167,7 +167,33 @@ void MainWindow::writeData()
     serial->write(test.toLocal8Bit());
 }
 
-void MainWindow::XboxVersion()
+void MainWindow::XboxVersion(QString serialNumber)
 {
-//TODO
+    QString xboxVersion = "";
+
+    int yearWeekBuilt = serialNumber.mid(7, 2).toInt();
+    int factoryCode = serialNumber.mid(10, 2).toInt();
+
+    if(yearWeekBuilt < 23)
+        xboxVersion = "1.0";
+    else if(yearWeekBuilt == 23) {
+        if(factoryCode == 3)
+            xboxVersion = "1.0";
+        else
+            xboxVersion = "1.0-1.1";
+    }
+    else if(yearWeekBuilt <= 25)
+        xboxVersion = "1.1";
+    else if(yearWeekBuilt <= 30)
+        xboxVersion = "1.2";
+    else if(yearWeekBuilt <= 32)
+        xboxVersion = "1.3";
+    else if(yearWeekBuilt <= 33)
+        xboxVersion = "1.4-1.5";
+    else if(yearWeekBuilt <= 41)
+        xboxVersion = "1.6";
+    else
+        xboxVersion = "1.6b";
+
+    ui->xboxVersionLabel->setText(xboxVersion);
 }

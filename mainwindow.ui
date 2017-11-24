@@ -110,6 +110,18 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QLabel" name="label_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>Xbox Version:</string>
         </property>
@@ -118,7 +130,7 @@
       <item>
        <widget class="QLabel" name="xboxVersionLabel">
         <property name="text">
-         <string>###</string>
+         <string/>
         </property>
        </widget>
       </item>

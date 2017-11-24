@@ -14,6 +14,8 @@
 #include <QtSerialPort/QSerialPort>
 
 #define EEPROM_SIZE 256
+#define VERSION "v0.5.0"
+#define GITHUB_URL "https://github.com/ExtraordinaryBen/DuinoBoX"
 
 namespace Ui {
     class MainWindow;
@@ -44,7 +46,7 @@ private:
     void SetStatus(QString);
     void ReadSerial(QString);
     void writeData();
-    void XboxVersion();
+    void XboxVersion(QString);
 };
 
 #endif // MAINWINDOW_H
