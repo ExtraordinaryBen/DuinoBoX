@@ -1,16 +1,16 @@
 # DuinoBoX - An Xbox EEPROM Reader
 DuinoBoX is an Xbox EEPROM Reader for helping Original Xbox owners recover the EEPROM from their console. It makes use of the Arduino and its SPI and Serial comminucation capabilities. 
 
-The Arduino sketech extracts the data from the Xbox's 256 byte EEPROM and either stores the data in either the Arduino's EEPROM, or transmits the data to a computer via the Arduino's serial connection over USB.
+The Arduino sketch extracts the data from the Xbox's 256 byte EEPROM and either stores the data in the Arduino's EEPROM, or transmits the data to a computer via the Arduino's serial connection over USB.
 
 ## Features
-* **Remote EEPROM Extraction:** Arduino will store the Xbox's EEPROM onto it's internal EEPROM if it's not connected to a computer's USB port.
+* **Remote EEPROM Extraction:** Arduino will store the Xbox's EEPROM onto it's own internal EEPROM if it's not connected to a computers via the USB port.
 
 
 ## How to Use
 
 ### Preparing the Arduino board
-Open the included Arduino sketch `duinobox-sketch.ino` located in the `duinobox-sketch` directory with ArduinoIDE, then upload it onto the Arduino board.
+Open the included Arduino sketch `duinobox-sketch.ino` located in the `duinobox-sketch` directory with the [Arduino IDE](https://www.arduino.cc/en/Main/Software), then upload it onto the Arduino Uno board.
 
 ![Adruino Diagram](DuinoBoX-Diagram.png)
 
@@ -27,7 +27,7 @@ Binary releases can be found under the [releases page.](https://github.com/Extra
 
 
 ## Building From Source
-DuinoBoX EEPROM Reader is coded natively in C++ and Qt5.9. Simply open the project in QtCreator and build. (Or use qmake.)
+DuinoBoX is coded in C++ and Qt5.6 (or higher.) Simply open the project in QtCreator and build. (Or use qmake.)
 
 ## TODO
 * Decrypt HDD Key (Maybe? Other tools like Chimp already handle this.)
@@ -39,6 +39,6 @@ Ben DeCamp (ExtraordinaryBen) -- Inital work
 DuinoBoX is released under the GPLv3 License. See the 'LICENSE' file for details.
 
 ## Acknowledgements
-
+[Fritzing](http://fritzing.org/home/) -- Thanks to Fritzing for their excellent diagram software. (Used to create the Arduino wiring diagram.)
 
 
