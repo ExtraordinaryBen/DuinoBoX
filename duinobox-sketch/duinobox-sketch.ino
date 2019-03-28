@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include <EEPROM.h>    
  
-#define EEPROM_ADDRESS 0x54    //Address of Xbox EEPROM is 0x54
-#define XBOX_EEPROM_SIZE 256
+#define EEPROM_ADDRESS   0x54  //Address of Xbox EEPROM is 0x54
+#define XBOX_EEPROM_SIZE 0xFF  //Xbox EEPROM is 256 bytes
 
-unsigned int address = 0;
-unsigned int tempRead = 0;
+byte address = 0;
+byte tempRead = 0;
 boolean receivedData = false;
  
 void setup(void)
@@ -61,39 +61,36 @@ void getEEPROM()
   }   
 }
 
-int testEEPROM(int deviceaddress)
+int testEEPROM(byte deviceaddress)
 {
   Wire.beginTransmission(deviceaddress);
   return Wire.endTransmission() == 0;
 }
  
-void writeEEPROM(int deviceaddress, unsigned int eeaddress, byte data ) 
+void writeEEPROM(byte deviceaddress, byte eeaddress, byte data ) 
 {
   //Set address on EEPROM to write
   Wire.beginTransmission(deviceaddress);
-  Wire.write((int)(eeaddress >> 8));   // MSB
-  Wire.write((int)(eeaddress & 0xFF)); // LSB
+  Wire.write(eeaddress); 
   Wire.write(data); // Write data
   Wire.endTransmission();
  
   delay(5);
 }
  
-byte readEEPROM(int deviceaddress, unsigned int eeaddress ) 
+byte readEEPROM(byte deviceaddress, byte eeaddress ) 
 {
   byte rdata = 0xFF;
 
   //Set address on EEPROM to read
   Wire.beginTransmission(deviceaddress);
-  Wire.write((int)(eeaddress >> 8));   // MSB
-  Wire.write((int)(eeaddress & 0xFF)); // LSB
+  Wire.write(eeaddress); 
   Wire.endTransmission();
  
-  Wire.requestFrom(deviceaddress,1);
+  Wire.requestFrom(deviceaddress,(byte)0x01);
  
   if (Wire.available())
     rdata = Wire.read();
  
   return rdata;
 }
-
