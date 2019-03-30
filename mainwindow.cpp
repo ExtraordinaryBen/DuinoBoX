@@ -31,9 +31,9 @@ void MainWindow::on_reloadButton_released()
     SetStatus("Getting Serial Ports...");
     // Example use QSerialPortInfo
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
-        qDebug() << "Name : " << info.portName();
-        ui->comboBox->addItem(info.portName());
-        qDebug() << "Description : " << info.description();
+        qDebug() << "Name: " << info.portName();
+        ui->comboBox->addItem(info.portName() + " - " + info.description(), QString(info.portName()));
+        qDebug() << "Description: " << info.description();
         qDebug() << "Manufacturer: " << info.manufacturer();
     }
     ui->comboBox->setEnabled(true);
@@ -48,7 +48,7 @@ void MainWindow::on_readButton_released()
     }
 
     SetStatus("Reading...");
-    ReadSerial(ui->comboBox->currentText());
+    ReadSerial(QVariant(ui->comboBox->currentData()).toString());
 
     if(results != NULL && results->length() >= EEPROM_SIZE) {
         if(results->length() > EEPROM_SIZE) {
@@ -57,16 +57,24 @@ void MainWindow::on_readButton_released()
 
         qDebug() << results->toHex();
 
-        //Load EEPROM data into fields
-        ui->serialLineEdit->setText(QString(results->mid(0x34, 12)));
-        XboxVersion(ui->serialLineEdit->text());
-        ui->onlineKeyLineEdit->setText(QString(results->mid(0x48, 16).toHex()).toUpper());
+        if(results->toInt() != 0)
+        {
+            //Load EEPROM data into fields
+            ui->serialLineEdit->setText(QString(results->mid(0x34, 12)));
+            XboxVersion(ui->serialLineEdit->text());
+            ui->onlineKeyLineEdit->setText(QString(results->mid(0x48, 16).toHex()).toUpper());
 
-        ui->dvdZoneLineEdit->setText(QString(results->mid(0xBC, 4).toHex()));
+            ui->dvdZoneLineEdit->setText(QString(results->mid(0xBC, 4).toHex()));
 
-        ui->macLineEdit->setText(QString(results->mid(0x40, 6).toHex().toUpper()));
+            ui->macLineEdit->setText(QString(results->mid(0x40, 6).toHex().toUpper()));
 
-        ReadyStatus();
+            ReadyStatus();
+        }
+        else {
+            SetStatus("Arduino's EEPROM is empty.");
+        }
+
+
 
     }
     else if(results != NULL && results->length() < EEPROM_SIZE) {

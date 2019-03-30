@@ -2,9 +2,9 @@
 #include <EEPROM.h>    
  
 #define EEPROM_ADDRESS   0x54  //Address of Xbox EEPROM is 0x54
-#define XBOX_EEPROM_SIZE 0xFF  //Xbox EEPROM is 256 bytes
+#define XBOX_EEPROM_SIZE 256   //Xbox EEPROM is 256 bytes
 
-byte address = 0;
+int address = 0;
 byte tempRead = 0;
 boolean receivedData = false;
  
@@ -37,8 +37,8 @@ void getEEPROM()
 {
   bool xboxDetected = testEEPROM(EEPROM_ADDRESS);
   if(xboxDetected) {
-  //    Serial.print("EEPROM Found at: 0x");
-  //    Serial.println(EEPROM_ADDRESS, HEX);
+      //Serial.print("EEPROM Found at: 0x");
+      //Serial.println(EEPROM_ADDRESS, HEX);
     address = 0;
     while(address < XBOX_EEPROM_SIZE) {
       if(receivedData == true)
