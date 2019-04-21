@@ -21,6 +21,7 @@ void setup(void)
 //}  
   Serial.write("GO\0");
   getEEPROM();
+  
 }
  
 void loop()
@@ -35,8 +36,10 @@ void loop()
 
 void getEEPROM()
 {
+  
   bool xboxDetected = testEEPROM(EEPROM_ADDRESS);
   if(xboxDetected) {
+    
       //Serial.print("EEPROM Found at: 0x");
       //Serial.println(EEPROM_ADDRESS, HEX);
     address = 0;
@@ -65,6 +68,7 @@ int testEEPROM(byte deviceaddress)
 {
   Wire.beginTransmission(deviceaddress);
   return Wire.endTransmission() == 0;
+  
 }
  
 void writeEEPROM(byte deviceaddress, byte eeaddress, byte data ) 

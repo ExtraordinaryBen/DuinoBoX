@@ -47,6 +47,7 @@ private:
     void ReadSerial(QString);
     void writeData();
     void XboxVersion(QString);
+    void VideoRegion();
 };
 
 #endif // MAINWINDOW_H

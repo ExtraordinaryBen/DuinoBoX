@@ -57,7 +57,7 @@ void MainWindow::on_readButton_released()
 
         qDebug() << results->toHex();
 
-        if(results->toInt() != 0)
+        if(results->at(0) != 0)
         {
             //Load EEPROM data into fields
             ui->serialLineEdit->setText(QString(results->mid(0x34, 12)));
@@ -204,4 +204,10 @@ void MainWindow::XboxVersion(QString serialNumber)
         xboxVersion = "1.6b";
 
     ui->xboxVersionLabel->setText(xboxVersion);
+}
+
+void MainWindow::VideoRegion()
+{
+    uint32_t region = results->mid(0x58, 4).toUInt();
+
 }
